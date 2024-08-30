@@ -73,7 +73,7 @@ char *my_readline(const char *prompt)
 {
   char *buffer = (char *)malloc(MAX_MEM_BUFFER_SIZE);
   if (nullptr == buffer) {
-    //1
+    //2
     fprintf(stderr, "failed to alloc line buffer");
     return nullptr;
   }
