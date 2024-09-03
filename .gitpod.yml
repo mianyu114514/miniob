@@ -1,3 +1,4 @@
+
 github:
   prebuilds:
     master: false
@@ -8,3 +9,7 @@ tasks:
       sudo apt install cmake flex bison texinfo libreadline-dev -y
       sudo bash build.sh init
       echo -e "\033[32m\nDependency installed successfully\033[0m"
+
+vscode:
+  extensions:
+    - danielpinto8zz6.c-cpp-project-generator

@@ -126,6 +126,30 @@ RC Table::create(Db *db, int32_t table_id, const char *path, const char *name, c
   LOG_INFO("Successfully create table %s:%s", base_dir, name);
   return rc;
 }
+RC Table::drop(const char *path)
+{
+  //删除文件
+  if(::remove(path)<0)
+  {
+    LOG_ERROR("Failed to delete table file. filename=%s, errmsg=%s", path, strerror(errno));
+    return RC::INTERNAL;
+  }
+  string             data_file = table_data_file(base_dir_.c_str(), table_meta_.name());
+  BufferPoolManager &bpm       = db->buffer_pool_manager();
+  bpm.remove_file(data_file.c_str());
+
+  if(record_handler_ != nullptr){
+    delete record_handler_;
+    record_handler_ = nullptr;
+  }
+
+  for(auto &index : indexes_){
+    index->destory();
+    delete index;
+    index = nullptr;
+  }
+  return RC::SUCCESS;
+}
 
 RC Table::open(Db *db, const char *meta_file, const char *base_dir)
 {

@@ -9,17 +9,17 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. */
 
 //
-// Created by Wangyunlai on 2022/5/22.
+// Created by Wangyunlai on 2023/6/13.
 //
 
-#include "sql/stmt/update_stmt.h"
-
-UpdateStmt::UpdateStmt(Table *table, Value *values, int value_amount)
-    : table_(table), values_(values), value_amount_(value_amount)
-{}
-RC UpdateStmt::create(Db *db, const UpdateSqlNode &update, Stmt *&stmt)
+#include "common/log/log.h"
+#include "common/types.h"
+#include "sql/stmt/drop_table_stmt.h"
+#include "event/sql_debug.h"
+RC DropTableStmt::create(Db *db, const DropTableSqlNode &drop_table, Stmt *&stmt)
 {
-  // TODO
-  stmt = nullptr;
-  return RC::INTERNAL;
+
+  stmt = new DropTableStmt(drop_table.relation_name);
+  return RC::SUCCESS;
 }
+

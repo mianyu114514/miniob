@@ -9,17 +9,24 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. */
 
 //
-// Created by Wangyunlai on 2022/5/22.
+// Created by Wangyunlai on 2023/6/13.
 //
 
-#include "sql/stmt/update_stmt.h"
+#pragma once
 
-UpdateStmt::UpdateStmt(Table *table, Value *values, int value_amount)
-    : table_(table), values_(values), value_amount_(value_amount)
-{}
-RC UpdateStmt::create(Db *db, const UpdateSqlNode &update, Stmt *&stmt)
+#include "common/rc.h"
+
+class SQLStageEvent;
+
+/**
+ * @brief 创建表的执行器
+ * @ingroup Executor
+ */
+class DropTableExecutor
 {
-  // TODO
-  stmt = nullptr;
-  return RC::INTERNAL;
-}
+public:
+  DropTableExecutor()          = default;
+  virtual ~DropTableExecutor() = default;
+
+  RC execute(SQLStageEvent *sql_event);
+};
