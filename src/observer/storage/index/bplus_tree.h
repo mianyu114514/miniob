@@ -478,7 +478,7 @@ public:
    */
   RC close();
  
-  void destroy() override;
+  void destroy();
 
   /**
    * @brief 此函数向IndexHandle对应的索引中插入一个索引项。

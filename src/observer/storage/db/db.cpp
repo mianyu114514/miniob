@@ -174,13 +174,14 @@ RC Db::drop_table(const char *table_name)
   Table  *table           = find_table(table_name);
   if(table == nullptr)
   {
-    LOG_WARN(""Failed to create table %s.", table_name");
+    LOG_WARN("Failed to create table %s.", table_name);
     return RC::SCHEMA_DB_NOT_EXIST;
   }
   table->drop(table_file_path.c_str());
   delete table;
   opened_tables_.erase(table_name);
   return RC::SUCCESS;
+  
 }
 
 Table *Db::find_table(const char *table_name) const

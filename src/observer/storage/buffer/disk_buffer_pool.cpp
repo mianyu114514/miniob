@@ -894,6 +894,7 @@ RC BufferPoolManager::remove_file(const char *file_name)
 {
   close_file(file_name);
   ::remove(file_name);
+  return RC::SUCCESS;
 }
 
 RC BufferPoolManager::flush_page(Frame &frame)
