@@ -27,6 +27,6 @@ RC DateType::to_string(const Value &val, string &result) const
     ss << std::setw(4) << std::setfill('0') << val.value_.int_value_ / 10000 << "-"
        << std::setw(2) << std::setfill('0') << (val.value_.int_value_ % 10000) / 100 << "-"
        << std::setw(2) << std::setfill('0') << val.value_.int_value_ % 100;
-    result = ss.str();
+    result = ss.str();//111
     return RC::SUCCESS; 
 }
